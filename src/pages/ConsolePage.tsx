@@ -286,8 +286,8 @@ export function ConsolePage() {
             >
               {!items.length && (
                 <div className="empty-state">
-                  <h2>Welcome to Blockchain Hotel</h2>
-                  <p>Your AI assistant</p>
+                  <h2>Welcome to the Blockchain Hotel</h2>
+                  <p>Your Voice Assistant in the World of Blockchain</p>
                 </div>
               )}
               {items.map((conversationItem, i) => {
@@ -345,6 +345,7 @@ export function ConsolePage() {
                   justifyContent: 'center',
                   gap: '0.5rem'
                 }}
+                className="start-stop-button"
               />
             ) : (
               <Button
@@ -361,6 +362,7 @@ export function ConsolePage() {
                   justifyContent: 'center',
                   gap: '0.5rem'
                 }}
+                className="start-stop-button"
               />
             )}
           </div>
@@ -369,3 +371,4 @@ export function ConsolePage() {
     </div>
   );
 }
+

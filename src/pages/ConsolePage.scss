@@ -88,11 +88,11 @@
       padding-left: 0.5rem;
       
       &.user {
-        color: #0099ff;
+        color: #7e57c2;
       }
       
       &.assistant {
-        color: #009900;
+        color: #7e57c2;
       }
     }
 
@@ -117,21 +117,47 @@
       }
     }
   }
-
+  
   .content-actions {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 2rem;
-    background: var(--background);
-    border-top: 1px solid var(--border);
+    position: absolute; /* Position it relative to the parent container */
+    bottom: 4rem; /* Adjust the distance from the bottom */
+    width: 100%; /* Ensure it spans the width of the container */
     display: flex;
     justify-content: center;
-
-    button {
-      padding: 1.5rem;
-      font-size: 1.5rem;
+    align-items: center;
+  }
+  
+  .content-actions button {
+    padding: 1.5rem;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 auto; /* Center the button horizontally */
+    max-width: 300px; /* Prevent the button from stretching too wide */
+    color: #fff;
+    background: linear-gradient(135deg, #7e57c2, #d1c4e9, #7e57c2); /* Match Launch gradient */
+    background-size: 200% 200%;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(126, 87, 194, 0.4);
+    transition: all 0.3s ease;
+    animation: gradientShift 6s ease infinite;
+  }
+  
+  .content-actions button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(126, 87, 194, 0.6);
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
     }
   }
-}
+}  
