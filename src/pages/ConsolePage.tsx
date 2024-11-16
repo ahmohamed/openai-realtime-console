@@ -110,7 +110,7 @@ export function ConsolePage() {
     client.sendUserMessageContent([
       {
         type: `input_text`,
-        text: `Hello! Welcome to Rafiki OS.`,
+        text: `Hello! Welcome to out Blockchain hotel. How can I help you today?`,
         
       },
     ]);
@@ -207,7 +207,26 @@ export function ConsolePage() {
     client.updateSession({ instructions: instructions, voice: 'shimmer' });
     // Set transcription, otherwise we don't get user transcriptions back
     client.updateSession({ input_audio_transcription: { model: 'whisper-1' } });
-
+    client.addTool(
+      {
+        name: 'check_availability',
+        description:
+          'Check the availability of rooms in a hotel at specific dates',
+        parameters: {
+          type: 'object',
+          properties: {
+            checkin_date: { type: 'string', format: 'date' },
+            checkout_date: { type: 'string', format: 'date' },
+          },
+        },
+      },
+      async ({ checkin_date, checkout_date }: { [key: string]: any }) => {
+        console.log('check_availability', checkin_date, checkout_date);
+        return {
+          availability: 'available',
+        };
+      }
+    );
     // handle realtime events from client + server for event logging
     client.on('realtime.event', (realtimeEvent: RealtimeEvent) => {
       setRealtimeEvents((realtimeEvents) => {
@@ -267,8 +286,8 @@ export function ConsolePage() {
             >
               {!items.length && (
                 <div className="empty-state">
-                  <h2>Karibu kwa Rafiki</h2>
-                  <p>Msaidizi wako wa AI</p>
+                  <h2>Welcome to Blockchain Hotel</h2>
+                  <p>Your AI assistant</p>
                 </div>
               )}
               {items.map((conversationItem, i) => {
@@ -310,7 +329,7 @@ export function ConsolePage() {
           <div className="content-actions">
             {!isConnected ? (
               <Button
-                label="Ongea na Rafiki"
+                label="Talk to the Assistant"
                 icon={Zap}
                 buttonStyle="action"
                 onClick={() => {
@@ -329,7 +348,7 @@ export function ConsolePage() {
               />
             ) : (
               <Button
-                label="Maliza Mazungumzo"
+                label="End Conversation"
                 icon={X}
                 buttonStyle="regular"
                 onClick={disconnectConversation}
